@@ -35,9 +35,21 @@
                   "encabezado" => "Se veía venir",
                   "imagen" => "img/2.jpg",
                   "texto" => "Lorem ipsum .... ")
-
-
         );
+
+        foreach($_SESSION['news'] as $new) {
+            echo "<div class='row mt-4'>";
+            echo "  <div class='card' style='width: 25rem;'>";
+            echo "    <img src='".$new['imagen']."' class='card-img-top' alt='".$new['titulo']."'>";
+            echo "    <div class='card-body'>";
+            echo "      <h3 class='card-title'>".$new['titulo']."</h3>";
+            echo "      <h5 class='card-title'>".$new['encabezado']."</h5>";
+            echo "      <p class='card-text'>".$new['texto']."</p>";
+            echo "    </div>";
+            echo "  </div>";
+            echo "</div>";        
+        }
+
 
 ?>
 
