@@ -23,7 +23,7 @@
         echo "<td>".$new['encabezado']."</td>";
         echo "<td>".$new['imagen']."</td>";
         echo "<td>".$new['texto']."</td>";
-        echo "<td><a href=''><i class='text-danger fa fa-times' aria-hidden='true'></i></a></td>";
+        echo "<td><a href='del_new.php?id=".$new['index']."'><i class='text-danger fa fa-times' aria-hidden='true'></i></a></td>";
         echo "</tr>";
     }  
     echo "</table>";  
