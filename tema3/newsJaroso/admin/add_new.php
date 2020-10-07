@@ -21,9 +21,13 @@
     //Si hemos recibido el formulario hay que añadir la noticia a la sesión
     if ($_POST) {
         //Añadir noticia
-        //Para que el índice esté bien debemos ver el mayor y sumarle uno
         
-        array_push($_SESSION['news'],array("index" => 3,
+        //Para que el índice esté bien debemos ver el mayor y sumarle uno
+        $indices = [];
+        foreach ($_SESSION['news'] as $new)
+            $indices[] = $new['index'];      
+
+        array_push($_SESSION['news'],array("index" => max(array_values($indices))+1,
                                            "titulo" => $_POST['titulo'],
                                            "encabezado" => $_POST['encabezado'],
                                            "imagen" => $_POST['imagen'],
