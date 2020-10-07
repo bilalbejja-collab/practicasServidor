@@ -20,7 +20,10 @@
     //Si hemos recibido el formulario hay que añadir la noticia a la sesión
     if ($_POST) {
         //Añadir noticia
-
+        array_push($_SESSION['news'],array($_POST['titulo'],
+                                           $_POST['encabezado'],
+                                           $_POST['imagen'],
+                                           $_POST['texto']));
 
     } else {
         //Pintar el formulario de añadir noticia
