@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +11,6 @@
 </head>
 <body>
     
-</body>
-</html>
-
-
-
-
     <div class='container'>
     
         <h1>NEWS JAROSO</h2>
@@ -54,3 +51,6 @@
 ?>
 
     </div>
+
+</body>
+</html>    
