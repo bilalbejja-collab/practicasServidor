@@ -60,6 +60,7 @@
             <div class="form-group col-5">
                 <button type="submit" class="btn btn-primary">Add</button> 
                 <button type="reset" class="btn btn-primary">Clear</button> 
+                <a href="index.php"><button type="button" class="btn btn-info">Volver</button></a>
         </div>
     </form>
 
