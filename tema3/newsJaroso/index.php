@@ -18,21 +18,23 @@
 <?php
         //Leemos el array de noticias y lo vamos pintando
         //De prueba creamos noticias de prueba
+        //La primera no está definida la sesión y crea el array. Luego ya sólo lo mostrará
+        if (!isset($_SESSION['news'])) {
+            $_SESSION['news'] = array(
+                
+                array("index" => 1,
+                    "titulo" => "Confinan Cuevas de Almanzora",
+                    "encabezado" => "Después de una fiesta organizada en el IES Jaroso se han disparado los casos",
+                    "imagen" => "img/1.jpg",
+                    "texto" => "Lorem ipsum .... "),
 
-        $_SESSION['news'] = array(
-            
-            array("index" => 1,
-                  "titulo" => "Confinan Cuevas de Almanzora",
-                  "encabezado" => "Después de una fiesta organizada en el IES Jaroso se han disparado los casos",
-                  "imagen" => "img/1.jpg",
-                  "texto" => "Lorem ipsum .... "),
-
-            array("index" => 2,
-                  "titulo" => "Trump muere de coronavirus",
-                  "encabezado" => "Se veía venir",
-                  "imagen" => "img/2.jpg",
-                  "texto" => "Lorem ipsum .... ")
-        );
+                array("index" => 2,
+                    "titulo" => "Trump muere de coronavirus",
+                    "encabezado" => "Se veía venir",
+                    "imagen" => "img/2.jpg",
+                    "texto" => "Lorem ipsum .... ")
+            );
+        }
 
         foreach($_SESSION['news'] as $new) {
             echo "<div class='row mt-4'>";

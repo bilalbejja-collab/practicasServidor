@@ -27,6 +27,7 @@
     echo "</table>";  
     echo "<a href='add_new.php'><button type='button' class='btn btn-success'>Add</button></a>";
 
+
 ?>
 
 

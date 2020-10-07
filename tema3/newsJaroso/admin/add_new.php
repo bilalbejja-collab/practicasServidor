@@ -1,5 +1,6 @@
 <?php
     session_start();
+    //session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,16 +21,22 @@
     //Si hemos recibido el formulario hay que añadir la noticia a la sesión
     if ($_POST) {
         //Añadir noticia
-        array_push($_SESSION['news'],array($_POST['titulo'],
-                                           $_POST['encabezado'],
-                                           $_POST['imagen'],
-                                           $_POST['texto']));
+        //Para que el índice esté bien debemos ver el mayor y sumarle uno
+        
+        array_push($_SESSION['news'],array("index" => 3,
+                                           "titulo" => $_POST['titulo'],
+                                           "encabezado" => $_POST['encabezado'],
+                                           "imagen" => $_POST['imagen'],
+                                           "texto" => $_POST['texto']));
+                                           
+        
+        header('Location: index.php');
 
     } else {
         //Pintar el formulario de añadir noticia
 ?>
 
-    <form action="index.php" method="post">
+    <form action="add_new.php" method="post">
             <div class="form-group col-5">
                 <label for="titulo">Título</label>
                 <input type="text" class="form-control form-control-sm" name="titulo" required>            
