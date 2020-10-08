@@ -34,7 +34,7 @@
             foreach ($_SESSION['news'] as $new)
                 $indices[] = $new['index'];      
         }
-        
+
         array_push($_SESSION['news'],array("index" => max(array_values($indices))+1,
                                            "titulo" => filtrado($_POST['titulo']),
                                            "encabezado" => filtrado($_POST['encabezado']),
@@ -42,7 +42,7 @@
                                            "texto" => filtrado($_POST['texto'])));
                                            
         
-        header('Location: index.php');
+        //header('Location: index.php');
 
     } else {
         //Pintar el formulario de añadir noticia
