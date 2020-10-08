@@ -10,14 +10,20 @@
     <div class="container">
         <h1 class="text-primary">Prácticas Servidor 2020 - 2021</h1>
 
-        <h3 class="text-secondary mt-2">Tema 2</h3>
-        <a href="tema2\ProyectoPeliculas\peliculas.php">Películas</a>
-
-        <h3 class="text-secondary mt-2">Tema 3</h3>
-        <a href="tema3\newsJaroso\index.php">NewsJaroso</a>
-
-        <h3 class="text-secondary mt-2">Tema 4</h3>
-        <a href="tema4\mail\index.php">Mandar email</a>
+        <div class="row">
+            <div class="col">
+                <h3 class="text-secondary mt-2">Tema 2</h3>
+                <a href="tema2\ProyectoPeliculas\peliculas.php">Películas</a>
+            </div>
+            <div class="col">
+                <h3 class="text-secondary mt-2">Tema 3</h3>
+                <a href="tema3\newsJaroso\index.php">NewsJaroso</a>
+            </div>
+            <div class="col">
+                <h3 class="text-secondary mt-2">Tema 4</h3>
+                <a href="tema4\mail\index.php">Mandar email</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
