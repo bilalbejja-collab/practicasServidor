@@ -18,6 +18,13 @@
 
 <?php
     
+    function filtrado($datos){
+        $datos = trim($datos);                                  // Elimina espacios antes y después de los datos
+        $datos = stripslashes($datos);                          // Elimina backslashes \
+        $datos = filter_var($datos,FILTER_SANITIZE_STRING);     // Elimina todas las etiquetas    
+        return $datos;
+    }
+
     //Si hemos recibido el formulario hay que añadir la noticia a la sesión
     if ($_POST) {
         //Añadir noticia
@@ -28,10 +35,10 @@
             $indices[] = $new['index'];      
 
         array_push($_SESSION['news'],array("index" => max(array_values($indices))+1,
-                                           "titulo" => $_POST['titulo'],
-                                           "encabezado" => $_POST['encabezado'],
-                                           "imagen" => $_POST['imagen'],
-                                           "texto" => $_POST['texto']));
+                                           "titulo" => filtrado($_POST['titulo']),
+                                           "encabezado" => filtrado($_POST['encabezado']),
+                                           "imagen" => filtrado($_POST['imagen']),
+                                           "texto" => filtrado($_POST['texto'])));
                                            
         
         header('Location: index.php');
