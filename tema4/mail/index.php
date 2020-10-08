@@ -25,7 +25,8 @@ $mail->isSMTP();
 // SMTP::DEBUG_OFF = off (for production use)
 // SMTP::DEBUG_CLIENT = client messages
 // SMTP::DEBUG_SERVER = client and server messages
- $mail->SMTPOptions = array(
+/* 
+$mail->SMTPOptions = array(
         'ssl' => array(
             'verify_peer' => false,
             'verify_peer_name' => false,
@@ -34,21 +35,23 @@ $mail->isSMTP();
     );
 
 $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+*/
+
 //Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'in-v3.mailjet.com';
 // use
 // $mail->Host = gethostbyname('smtp.gmail.com');
 // if your network does not support SMTP over IPv6
 //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 465;
+$mail->Port = 465;  //2525 o 587 sin ssl
 //Set the encryption mechanism to use - STARTTLS or SMTPS
 $mail->SMTPSecure = 'ssl';
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = 'jjavierguillen@gmail.com';
+$mail->Username = 'cec1d7911e7da53bd169831912929ab8';
 //Password to use for SMTP authentication
-$mail->Password = 'kukulcan77$';
+$mail->Password = '3b29ab9c8b5bd4e94e6bcfd8e518f496';
 //Set who the message is to be sent from
 $mail->setFrom('jjavierguillen@gmail.com');
 //Set an alternative reply-to address
