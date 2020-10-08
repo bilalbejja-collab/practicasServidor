@@ -53,11 +53,11 @@ $mail->Username = 'cec1d7911e7da53bd169831912929ab8';
 //Password to use for SMTP authentication
 $mail->Password = '3b29ab9c8b5bd4e94e6bcfd8e518f496';
 //Set who the message is to be sent from
-$mail->setFrom('jjavierguillen@gmail.com');
+$mail->setFrom('admin@erasmusiesjaroso.com');
 //Set an alternative reply-to address
 //$mail->addReplyTo('replyto@example.com', 'First Last');
 //Set who the message is to be sent to
-$mail->addAddress('josejavierguillen@gmail.com', 'JJ');
+$mail->addAddress('jjavierguillen@gmail.com', 'JJ');
 //Set the subject line
 $mail->Subject = 'Prueba desde Heroku';
 //Read an HTML message body from an external file, convert referenced images to embedded,
