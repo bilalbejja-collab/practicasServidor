@@ -20,7 +20,7 @@ echo "Enviando mail con PHPMailer ...";
 $mail = new PHPMailer;
 //Tell PHPMailer to use SMTP
 $mail->isSMTP();
-$mail->SMTPDebug = SMTP::DEBUG_SERVER; 
+//$mail->SMTPDebug = SMTP::DEBUG_SERVER;   //Para depurar los mensajes de error del correo. IMPORTANTE
 //Set the hostname of the mail server
 $mail->Host = 'smtp.gmail.com';
 
@@ -33,7 +33,7 @@ $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
 $mail->Username = getenv('GMAIL_USER');
 //Password to use for SMTP authentication
-$mail->Password = getenv('GMAIL_TOKEN');       //Usar un token de Gmail (Cuenta -> Seguridad -> Contraseñas de aplicaciones)
+$mail->Password = getenv('GMAIL_TOKEN');  //Usar un token de Gmail (Cuenta -> Seguridad -> Contraseñas de aplicaciones)
 //Set who the message is to be sent from
 $mail->setFrom('jjavierguillen@gmail.com');
 //Set who the message is to be sent to
