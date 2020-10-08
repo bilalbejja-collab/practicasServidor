@@ -42,6 +42,8 @@
                                            "texto" => filtrado($_POST['texto'])));
                                            
         
+        print_r($_SESSION['news']);
+        echo "#".max(array_values($indices));
         //header('Location: index.php');
 
     } else {
