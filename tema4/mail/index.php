@@ -10,6 +10,8 @@ require 'vendor\phpmailer\phpmailer\src\Exception.php';
 require 'vendor\phpmailer\phpmailer\src\PHPMailer.php';
 require 'vendor\phpmailer\phpmailer\src\SMTP.php';
 
+echo "Enviando mail con PHPMailer ...";
+
 $mail = new PHPMailer;
 //Tell PHPMailer to use SMTP
 $mail->isSMTP();
