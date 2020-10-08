@@ -22,9 +22,10 @@ try {
     $mail->Host       = 'in-v3.mailjet.com';                 // Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                // Enable SMTP authentication
     $mail->Username   = getenv('MJ_APIKEY_PUBLIC');          // SMTP username
-    $mail->Password   = getenv('MJ_APIKEY_PRIVATE');  // SMTP password
+    $mail->Password   = getenv('MJ_APIKEY_PRIVATE');         // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;      // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-    $mail->Port       =  2525;                                // TCP port to connect to
+    //$mail->SMTPSecure = 'ssl';
+    $mail->Port       =  587;                                // TCP port to connect to 465 (ssl), 587 o 25
 
     //Recipients
     $mail->setFrom('admin@erasmusiesjaroso.com', 'Correo de prueba');

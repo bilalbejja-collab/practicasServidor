@@ -8,21 +8,21 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 // Load Composer's autoloader
-//require 'vendor/autoload.php';
-
+require 'vendor/autoload.php';
+/*
 require 'vendor/phpmailer/phpmailer/src/Exception.php';
 require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require 'vendor/phpmailer/phpmailer/src/SMTP.php';
-
+*/
 
 echo "Enviando mail con PHPMailer ...";
 
 $mail = new PHPMailer;
 //Tell PHPMailer to use SMTP
 $mail->isSMTP();
-
+$mail->SMTPDebug = SMTP::DEBUG_SERVER; 
 //Set the hostname of the mail server
-$mail->Host = 'in-v3.mailjet.com';
+$mail->Host = 'smtp.gmail.com';
 
 //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
 $mail->Port = 465;  //2525 o 587 sin ssl
@@ -31,11 +31,11 @@ $mail->SMTPSecure = 'ssl';
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = getenv('MJ_APIKEY_PUBLIC');
+$mail->Username = getenv('GMAIL_USER');
 //Password to use for SMTP authentication
-$mail->Password = getenv('MJ_APIKEY_PRIVATE');
+$mail->Password = getenv('GMAIL_TOKEN');       //Usar un token de Gmail (Cuenta -> Seguridad -> Contraseñas de aplicaciones)
 //Set who the message is to be sent from
-$mail->setFrom('admin@erasmusiesjaroso.com');
+$mail->setFrom('jjavierguillen@gmail.com');
 //Set who the message is to be sent to
 $mail->addAddress('jjavierguillen@gmail.com', 'JJ');
 //Set the subject line
