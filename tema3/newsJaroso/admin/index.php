@@ -19,6 +19,7 @@
 
 <?php
 
+echo "Se carga la sesión?";
 print_r($_SESSION['news']);
     echo "<table class='table table-dark'>";
     foreach($_SESSION['news'] as $new) {
