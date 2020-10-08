@@ -1,6 +1,13 @@
 
 <?php
 session_start();
+if (!isset($_SESSION['user-agent']))
+    $_SESSION['user-agent']=$_SERVER['HTTP_USER_AGENT'];
+else {
+    if ($_SESSION['user-agent']!=$_SERVER['HTTP_USER_AGENT'])
+        session_destroy();
+}
+
 include_once('lib/lib.php');
 
     //Comprobación del email y password
@@ -11,7 +18,7 @@ include_once('lib/lib.php');
         $email = filtrado($_POST['email']);
         $password = filtrado($_POST['password']);
 
-        if (($email == 'admin@admin.com') && ($password == 'nimda')) {
+        if (($email == 'admin@admin.com') && ($password == 'nimda777')) {
             $_SESSION['usuario']['email'] = $_POST['email'];
             $_SESSION['usuario']['password'] = $_POST['password'];
         } 

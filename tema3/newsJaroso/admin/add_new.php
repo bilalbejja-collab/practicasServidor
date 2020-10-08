@@ -1,5 +1,11 @@
 <?php
     session_start();
+    if (!isset($_SESSION['user-agent']))
+        $_SESSION['user-agent']=$_SERVER['HTTP_USER_AGENT'];
+    else {
+        if ($_SESSION['user-agent']!=$_SERVER['HTTP_USER_AGENT'])
+            session_destroy();
+    }    
     include_once('lib/lib.php');
 ?>
 <!DOCTYPE html>
