@@ -30,15 +30,17 @@
         echo "<h6><a href='cerrar.php'>Cerrar sesión</a></h6>";
 
         echo "<table class='table table-dark'>";
-        foreach($_SESSION['news'] as $new) {
-            echo "<tr>";
-            echo "<td>".$new['titulo']."</td>";
-            echo "<td>".$new['encabezado']."</td>";
-            echo "<td>".$new['imagen']."</td>";
-            echo "<td>".$new['texto']."</td>";
-            echo "<td><a href='del_new.php?id=".$new['index']."'><i class='text-danger fa fa-trash' aria-hidden='true'></i></a></td>";
-            echo "</tr>";
-        }  
+        if (isset($_SESSION['news'])) {        
+            foreach($_SESSION['news'] as $new) {
+                echo "<tr>";
+                echo "<td>".$new['titulo']."</td>";
+                echo "<td>".$new['encabezado']."</td>";
+                echo "<td>".$new['imagen']."</td>";
+                echo "<td>".$new['texto']."</td>";
+                echo "<td><a href='del_new.php?id=".$new['index']."'><i class='text-danger fa fa-trash' aria-hidden='true'></i></a></td>";
+                echo "</tr>";
+            }  
+        }
         echo "</table>";  
         echo "<a href='add_new.php'><button type='button' class='btn btn-success'>Add</button></a>";
 

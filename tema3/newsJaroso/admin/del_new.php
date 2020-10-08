@@ -1,5 +1,11 @@
 <?php
     session_start();
+    if (!isset($_SESSION['user-agent']))
+        $_SESSION['user-agent']=$_SERVER['HTTP_USER_AGENT'];
+    else {
+        if ($_SESSION['user-agent']!=$_SERVER['HTTP_USER_AGENT'])
+            session_destroy();
+    }    
     
     //Borramos la noticia recibida por GET
     if ($_GET) {

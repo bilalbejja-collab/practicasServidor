@@ -29,10 +29,12 @@
         //Añadir noticia
         
         //Para que el índice esté bien debemos ver el mayor y sumarle uno
-        $indices = [];
-        foreach ($_SESSION['news'] as $new)
-            $indices[] = $new['index'];      
-
+        $indices = [0];
+        if (isset($_SESSION['news'])){
+            foreach ($_SESSION['news'] as $new)
+                $indices[] = $new['index'];      
+        }
+        
         array_push($_SESSION['news'],array("index" => max(array_values($indices))+1,
                                            "titulo" => filtrado($_POST['titulo']),
                                            "encabezado" => filtrado($_POST['encabezado']),
