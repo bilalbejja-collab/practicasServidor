@@ -7,6 +7,8 @@
             session_destroy();
     }    
     include_once('lib/lib.php');
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +35,8 @@
         if (isset($_SESSION['news'])){
             foreach ($_SESSION['news'] as $new)
                 $indices[] = $new['index'];      
+        } else {
+            $_SESSION['news'] = [];
         }
 
         array_push($_SESSION['news'],array("index" => max(array_values($indices))+1,
@@ -41,10 +45,7 @@
                                            "imagen" => filtrado($_POST['imagen']),
                                            "texto" => filtrado($_POST['texto'])));
                                            
-        
-        print_r($_SESSION['news']);
-        echo "#".max(array_values($indices));
-        //header('Location: index.php');
+        header('Location: index.php');
 
     } else {
         //Pintar el formulario de añadir noticia
