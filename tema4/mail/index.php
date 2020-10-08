@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 // Load Composer's autoloader
-require 'vendor\autoload.php';
+require 'vendor/autoload.php';
 
 /*
 require 'vendor\phpmailer\phpmailer\src\Exception.php';
