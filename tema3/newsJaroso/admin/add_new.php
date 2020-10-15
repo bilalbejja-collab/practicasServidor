@@ -85,7 +85,7 @@
                                            "imagen" => filtrado($imagen),
                                            "texto" => filtrado($_POST['texto'])));
                                            
-        header('Location: index.php');
+        header('Location: index.php'); exit;
 
     } else {
         //Pintar el formulario de añadir noticia
