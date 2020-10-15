@@ -9,6 +9,7 @@
     include_once('lib/lib.php');
    
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +26,43 @@
 
 <?php
 
+    //Función para subir un archivo al servidor
+    function uploadFile() {
+        $directorioSubida = "../img/";
+        $max_file_size = "5120000";
+        $extensionesValidas = array("jpg", "png", "gif");
+        if(isset($_FILES['imagen'])){
+            $errores = array();
+            $nombreArchivo = $_FILES['imagen']['name'];
+            $filesize = $_FILES['imagen']['size'];
+            $directorioTemp = $_FILES['imagen']['tmp_name'];
+            $tipoArchivo = $_FILES['imagen']['type'];
+            $arrayArchivo = pathinfo($nombreArchivo);
+            $extension = $arrayArchivo['extension'];
+            // Comprobamos la extensión del archivo
+            if(!in_array($extension, $extensionesValidas)){
+                $errores[] = "La extensión del archivo no es válida o no se ha subido ningún archivo";
+            }
+            // Comprobamos el tamaño del archivo
+            if($filesize > $max_file_size){
+                $errores[] = "La imagen debe de tener un tamaño inferior a 50 kb";
+            }
+            // Comprobamos y renombramos el nombre del archivo
+            $nombreArchivo = $arrayArchivo['filename'];
+            $nombreArchivo = preg_replace("/[^A-Z0-9._-]/i", "_", $nombreArchivo);
+            $nombreArchivo = $nombreArchivo . rand(1, 100);
+            // Desplazamos el archivo si no hay errores
+            if(empty($errores)){
+                $nombreCompleto = $directorioSubida.$nombreArchivo.".".$extension;
+                move_uploaded_file($directorioTemp, $nombreCompleto); 
+                return substr($nombreCompleto, 3); //Para quitar el ../            
+            } else {
+                //print_r($errores);
+            }
+            
+        }
+    }
+
     //Si hemos recibido el formulario hay que añadir la noticia a la sesión
     if ($_POST) {
         //Añadir noticia
@@ -38,10 +76,13 @@
             $_SESSION['news'] = [];
         }
 
+        //Subimos el fichero al servidor
+        $imagen = uploadFile();
+
         array_push($_SESSION['news'],array("index" => max(array_values($indices))+1,
                                            "titulo" => filtrado($_POST['titulo']),
                                            "encabezado" => filtrado($_POST['encabezado']),
-                                           "imagen" => filtrado($_POST['imagen']),
+                                           "imagen" => filtrado($imagen),
                                            "texto" => filtrado($_POST['texto'])));
                                            
         header('Location: index.php');
@@ -50,7 +91,7 @@
         //Pintar el formulario de añadir noticia
 ?>
 
-    <form action="add_new.php" method="post">
+    <form action="add_new.php" method="post" enctype="multipart/form-data">
             <div class="form-group col-5">
                 <label for="titulo">Título</label>
                 <input type="text" class="form-control form-control-sm" name="titulo" required>            
@@ -61,7 +102,7 @@
             </div>
             <div class="form-group col-5">
                 <label for="imagen">Imagen</label>
-                <input type="text" class="form-control form-control-sm" name="imagen" required>            
+                <input type="file" class="form-control form-control-sm" name="imagen" required>            
             </div>
             <div class="form-group col-5">
                 <label for="texto">Texto completo</label>
