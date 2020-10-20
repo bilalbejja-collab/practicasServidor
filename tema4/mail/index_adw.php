@@ -19,9 +19,9 @@ $mail->isSMTP();
 $mail->Host = 'free.mboxhosting.com';
 
 //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;  //2525 o 587 sin ssl
+$mail->Port = 465;  //2525 o 587 sin ssl
 //Set the encryption mechanism to use - STARTTLS or SMTPS
-//$mail->SMTPSecure = 'ssl';
+$mail->SMTPSecure = 'ssl';
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
@@ -31,7 +31,7 @@ $mail->Password = "MjcrLVj#20";  //Usar un token de Gmail (Cuenta -> Seguridad -
 //Set who the message is to be sent from
 $mail->setFrom('iesjaroso@iesjaroso.tk');
 //Set who the message is to be sent to
-$mail->addAddress('jjavierguillen@gmail.com', 'JJ');
+$mail->addAddress('jjavierguillen@gmail.com');
 //Set the subject line
 $mail->Subject = 'Adwards desde Heroku';
 //Read an HTML message body from an external file, convert referenced images to embedded,
