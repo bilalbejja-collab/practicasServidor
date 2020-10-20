@@ -27,7 +27,7 @@ $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
 $mail->Username = "iesjaroso@iesjaroso.tk";
 //Password to use for SMTP authentication
-$mail->Password = "MjcrLVj#20";  //Usar un token de Gmail (Cuenta -> Seguridad -> Contraseñas de aplicaciones)
+$mail->Password = "robotics77";  //Usar un token de Gmail (Cuenta -> Seguridad -> Contraseñas de aplicaciones)
 //Set who the message is to be sent from
 $mail->setFrom('iesjaroso@iesjaroso.tk');
 //Set who the message is to be sent to
