@@ -20,12 +20,12 @@ try {
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
     $mail->Username   = 'iesjaroso@iesjaroso.tk';                     // SMTP username
     $mail->Password   = 'MjcrLVj#20';                               // SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-    $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+    $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
     //Recipients
-    $mail->setFrom('iesjaroso@iesjaroso.tk', 'Mailer');
-    $mail->addAddress('jjavierguillen@gmail.com', 'Joe User');     // Add a recipient
+    $mail->setFrom('iesjaroso@iesjaroso.tk');
+    $mail->addAddress('jjavierguillen@gmail.com', 'JJ');     // Add a recipient
 
     // Attachments
     $mail->addAttachment('./prueba.txt');         // Add attachments
