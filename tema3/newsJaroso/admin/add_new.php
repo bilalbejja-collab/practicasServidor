@@ -31,6 +31,7 @@
         $directorioSubida = "../img/";
         $max_file_size = "5120000";
         $extensionesValidas = array("jpg", "png", "gif");
+        $mimesValidos = array("image/jpeg", "image/png", "image/gif");
         if(isset($_FILES['imagen'])){
             $errores = array();
             $nombreArchivo = $_FILES['imagen']['name'];
@@ -43,14 +44,31 @@
             if(!in_array($extension, $extensionesValidas)){
                 $errores[] = "La extensión del archivo no es válida o no se ha subido ningún archivo";
             }
+
+            //Comprobar que el mime del archivo coincide con el tipo de extensiones permitidas
+            $mimeinfo = finfo_open(FILEINFO_MIME);
+            if(!$mimeinfo){
+                $errores[] = "Por motivos de seguridad no puedo analizar el archivo";
+            }else{
+                $mimereal = finfo_file($mimeinfo, $_FILES["imagen"]["tmp_name"]);
+                $mimereal = explode(";",$mimereal)[0]; //Quito lo que viene tras ;
+                if(!in_array($mimereal,$mimesValidos)) {
+                    $errores[] = "El mime real no corresponde. $mimereal";
+                }
+            }
+
             // Comprobamos el tamaño del archivo
             if($filesize > $max_file_size){
                 $errores[] = "La imagen debe de tener un tamaño inferior a 50 kb";
             }
-            // Comprobamos y renombramos el nombre del archivo
+
+            print_r($errores);
+
+            // Comprobamos y renombramos el nombre del archivo [opcional]
             $nombreArchivo = $arrayArchivo['filename'];
             $nombreArchivo = preg_replace("/[^A-Z0-9._-]/i", "_", $nombreArchivo);
             $nombreArchivo = $nombreArchivo . rand(1, 100);
+
             // Desplazamos el archivo si no hay errores
             if(empty($errores)){
                 $nombreCompleto = $directorioSubida.$nombreArchivo.".".$extension;
@@ -75,7 +93,7 @@
             $_SESSION['news'] = [];
         }
 
-        //Subimos el fichero al servidor
+        //Subimos el fichero al servidor - devuelve el nombre de la imagen
         $imagen = uploadFile();
 
         array_push($_SESSION['news'],array("index" => max(array_values($indices))+1,
