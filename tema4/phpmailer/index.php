@@ -1,45 +1,57 @@
-
 <?php
-// Import PHPMailer classes into the global namespace
-// These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
+/*
+require 'vendor/phpmailer/phpmailer/src/Exception.php';
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
+*/
 
-// Instantiation and passing `true` enables exceptions
-$mail = new PHPMailer(true);
+echo "Enviando mail con PHPMailer ...";
 
-try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-    $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       = 'free.mboxhosting.com';                    // Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'iesjaroso@iesjaroso.tk';                     // SMTP username
-    $mail->Password   = 'MjcrLVj#20';                               // SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-    $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+$mail = new PHPMailer;
+//Tell PHPMailer to use SMTP
+$mail->isSMTP();
+//$mail->SMTPDebug = SMTP::DEBUG_SERVER;   //Para depurar los mensajes de error del correo. IMPORTANTE
+//Set the hostname of the mail server
+$mail->Host = 'free.mboxhosting.com';
 
-    //Recipients
-    $mail->setFrom('iesjaroso@iesjaroso.tk');
-    $mail->addAddress('jjavierguillen@gmail.com', 'JJ');     // Add a recipient
-
-    // Attachments
-    $mail->addAttachment('./prueba.txt');         // Add attachments
-
-    // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+$mail->Port = 465;  //2525 o 587 sin ssl
+//Set the encryption mechanism to use - STARTTLS or SMTPS
+$mail->SMTPSecure = 'ssl';
+//Whether to use SMTP authentication
+$mail->SMTPAuth = true;
+//Username to use for SMTP authentication - use full email address for gmail
+$mail->Username = "iesjaroso@iesjaroso.tk";
+//Password to use for SMTP authentication
+$mail->Password = "MjcrLVj#20";  //Usar un token de Gmail (Cuenta -> Seguridad -> Contraseñas de aplicaciones)
+//Set who the message is to be sent from
+$mail->setFrom('iesjaroso@iesjaroso.tk');
+//Set who the message is to be sent to
+$mail->addAddress('jjavierguillen@gmail.com', 'JJ');
+//Set the subject line
+$mail->Subject = 'Prueba desde Heroku';
+//Read an HTML message body from an external file, convert referenced images to embedded,
+//convert HTML into a basic plain-text alternative body
+$mail->msgHTML("<body><h2>Hoooola</h2></body>", __DIR__);
+//Replace the plain text body with one created manually
+$mail->AltBody = 'This is a plain-text message body';
+//Attach an image file
+$mail->addAttachment('prueba.pdf');
+//send the message, check for errors
+if (!$mail->send()) {
+    echo 'Mailer Error: '. $mail->ErrorInfo;
+} else {
+    echo 'Message sent!';
 }
 
 ?>
