@@ -62,8 +62,6 @@
                 $errores[] = "La imagen debe de tener un tamaño inferior a 50 kb";
             }
 
-            print_r($errores);
-
             // Comprobamos y renombramos el nombre del archivo [opcional]
             $nombreArchivo = $arrayArchivo['filename'];
             $nombreArchivo = preg_replace("/[^A-Z0-9._-]/i", "_", $nombreArchivo);
