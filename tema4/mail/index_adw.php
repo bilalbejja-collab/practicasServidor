@@ -33,7 +33,7 @@ $mail->setFrom('iesjaroso@iesjaroso.tk');
 //Set who the message is to be sent to
 $mail->addAddress('jjavierguillen@gmail.com', 'JJ');
 //Set the subject line
-$mail->Subject = 'Prueba desde Heroku';
+$mail->Subject = 'Adwards desde Heroku';
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
 $mail->msgHTML("<body><h2>Hoooola</h2></body>", __DIR__);
