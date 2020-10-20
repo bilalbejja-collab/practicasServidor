@@ -57,7 +57,7 @@
                 move_uploaded_file($directorioTemp, $nombreCompleto); 
                 return substr($nombreCompleto, 3); //Para quitar el ../            
             } else {
-                //print_r($errores);
+                return $errores;
             }
             
         }
@@ -70,8 +70,7 @@
         //Para que el índice esté bien debemos ver el mayor y sumarle uno
         $indices = [0];
         if (isset($_SESSION['news'])){
-            foreach ($_SESSION['news'] as $new)
-                $indices[] = $new['index'];      
+            $indices = array_column($_SESSION['news'],'index');     
         } else {
             $_SESSION['news'] = [];
         }
